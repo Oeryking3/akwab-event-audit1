@@ -20,4 +20,4 @@ Akwab-Api/bootstrap/cache/*.php
 # Tests
 coverage
 
-login.json
+login.jsonlogin_prod.json
