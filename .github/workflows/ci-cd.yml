@@ -75,7 +75,7 @@ jobs:
         run: docker build -f Akwab-Api/dockerfile.prod -t akwab-api-check:latest ./Akwab-Api
 
       - name: Scan api image with Trivy
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: 'akwab-api-check:latest'
           format: 'table'
