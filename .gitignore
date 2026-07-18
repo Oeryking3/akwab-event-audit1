@@ -21,3 +21,5 @@ Akwab-Api/bootstrap/cache/*.php
 coverage
 
 login.jsonlogin_prod.json
+zap_report.html
+zap.yaml
