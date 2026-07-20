@@ -10,9 +10,9 @@ export default function UpdateUtilisateur() {
     nom: "",
     prenoms: "",
     email: "",
-    role: "",
-    password: "",
-    password_confirmation: "",
+    id_role: "",
+    mot_de_passe: "",
+    mot_de_passe_confirmation: "",
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -40,9 +40,9 @@ export default function UpdateUtilisateur() {
           nom: u.nom ?? "",
           prenoms: u.prenoms ?? "",
           email: u.email ?? "",
-          role: u.role ?? "",
-          password: "",
-          password_confirmation: "",
+          id_role: u.id_role ?? "",
+          mot_de_passe: "",
+          mot_de_passe_confirmation: "",
         });
       } else {
         setError("Impossible de charger l'utilisateur.");
@@ -66,9 +66,9 @@ export default function UpdateUtilisateur() {
     setError("");
     setSuccess("");
     setFieldErrors({});
-    if (form.password && form.password !== form.password_confirmation) {
+    if (form.mot_de_passe && form.mot_de_passe !== form.mot_de_passe_confirmation) {
       setFieldErrors({
-        password_confirmation: "Les mots de passe ne correspondent pas.",
+        mot_de_passe_confirmation: "Les mots de passe ne correspondent pas.",
       });
       setSaving(false);
       return;
@@ -77,11 +77,11 @@ export default function UpdateUtilisateur() {
       nom: form.nom,
       prenoms: form.prenoms,
       email: form.email,
-      role: form.role,
+      id_role: form.id_role,
     };
-    if (form.password) {
-      payload.password = form.password;
-      payload.password_confirmation = form.password_confirmation;
+    if (form.mot_de_passe) {
+      payload.mot_de_passe = form.mot_de_passe;
+      payload.mot_de_passe_confirmation = form.mot_de_passe_confirmation;
     }
     try {
       const res = await fetch(`${API_URL}/api/utilisateurs/${id}`, {
@@ -179,22 +179,22 @@ export default function UpdateUtilisateur() {
               className="sm:col-span-2"
             />
             <div className="flex flex-col gap-1.5 sm:col-span-2">
-              <label className="text-xs text-gray-500 font-medium uppercase tracking-wide">
+              <label htmlFor="id_role" className="text-xs text-gray-500 font-medium uppercase tracking-wide">
                 Rôle
               </label>
               <select
-                name="role"
-                value={form.role}
+                id="id_role"
+                name="id_role"
+                value={form.id_role}
                 onChange={handleChange}
                 className="border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 bg-white transition-colors"
               >
                 <option value="">— Sélectionner un rôle —</option>
-                <option value="admin">Admin</option>
-                <option value="organisateur">Organisateur</option>
-                <option value="utilisateur">Utilisateur</option>
+                <option value="1">Administrateur</option>
+                <option value="2">Utilisateur</option>
               </select>
-              {fieldErrors.role && (
-                <p className="text-xs text-red-500">{fieldErrors.role}</p>
+              {fieldErrors.id_role && (
+                <p className="text-xs text-red-500">{fieldErrors.id_role}</p>
               )}
             </div>
           </div>
@@ -207,19 +207,19 @@ export default function UpdateUtilisateur() {
             </p>
             <Field
               label="Nouveau mot de passe"
-              name="password"
+              name="mot_de_passe"
               type="password"
-              value={form.password}
+              value={form.mot_de_passe}
               onChange={handleChange}
-              error={fieldErrors.password}
+              error={fieldErrors.mot_de_passe}
             />
             <Field
               label="Confirmer"
-              name="password_confirmation"
+              name="mot_de_passe_confirmation"
               type="password"
-              value={form.password_confirmation}
+              value={form.mot_de_passe_confirmation}
               onChange={handleChange}
-              error={fieldErrors.password_confirmation}
+              error={fieldErrors.mot_de_passe_confirmation}
             />
           </div>
 

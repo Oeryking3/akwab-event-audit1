@@ -29,7 +29,7 @@ class UpdateUtilisateurRequest extends FormRequest
             'prenoms'      => 'sometimes|string|max:255',
             'email'        => 'sometimes|email|unique:utilisateurs,email,' . $userId . ',id_utilisateur',
             'telephone'    => 'sometimes|string|max:20',
-            'mot_de_passe' => ['sometimes|nullable', 'confirmed', \Illuminate\Validation\Rules\Password::defaults()],
+            'mot_de_passe' => ['sometimes', 'nullable', 'confirmed', \Illuminate\Validation\Rules\Password::defaults()],
             'id_role'      => 'sometimes|exists:roles,id_role',
         ];
     }

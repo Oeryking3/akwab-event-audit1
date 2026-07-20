@@ -12,6 +12,7 @@ import Dashboard from "./Admin/dashboard";
 
 import ListUtilisateur from "./Admin/Utilisateurs/ListUtilisateur";
 import ShowUtilisateur from "./Admin/Utilisateurs/ShowUtilisateur";
+import UpdateUtilisateur from "./Admin/Utilisateurs/UpdateUtilisateur";
 
 import ListOrganisateur from "./Admin/Organisateurs/ListOrganisateur";
 import ShowOrganisateur from "./Admin/Organisateurs/ShowOrganisateur";
@@ -84,6 +85,7 @@ function App() {
             <Route index path="Dashboard" element={<Dashboard />} />
 
             <Route path="utilisateurs" element={<ListUtilisateur />} />
+            <Route path="utilisateurs/:id/edit" element={<UpdateUtilisateur />} />
             <Route path="utilisateurs/:id" element={<ShowUtilisateur />} />
 
             <Route path="organisateurs" element={<ListOrganisateur />} />
