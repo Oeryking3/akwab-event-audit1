@@ -95,20 +95,20 @@ function Footer() {
                         </h3>
 
                         <div className="flex gap-4 text-2xl">
-                            <a href="#">
+                            <a href="https://instagram.com/akwabevent" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                                 <i class="bi bi-instagram text-pink-500"></i>
                             </a>
-                            <a href="#">
+                            <a href="https://wa.me/2250101651820" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                                 <i class="bi bi-whatsapp text-green-500"></i>
                             </a>
-                            <a href="#">
+                            <a href="https://facebook.com/akwabevent" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                                 <i class="bi bi-facebook text-blue-500"></i>
                             </a>
-                            <a href="#">
+                            <a href="https://tiktok.com/@akwabevent" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
                                 <i class="bi bi-tiktok text-gray-800"></i>
                             </a>
                         </div>
-                    </div> 
+                    </div>
 
                 </div>
 
