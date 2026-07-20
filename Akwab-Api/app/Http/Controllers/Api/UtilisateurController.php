@@ -76,6 +76,16 @@ class UtilisateurController extends Controller
         ]);
     }
 
+    public function deleteProfile(Request $request)
+    {
+        $utilisateur = $request->user();
+        $utilisateur->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Votre compte a ete supprime avec succes',
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      */

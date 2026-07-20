@@ -46,6 +46,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/profile', [UtilisateurController::class, 'profile']);
     Route::put('/profileupdate', [UtilisateurController::class, 'updateProfile']);
+    Route::delete('/profile', [UtilisateurController::class, 'deleteProfile']);
     Route::get('/mes-tickets', [TicketController::class, 'mesTickets']);
     Route::get('/tickets/{id}', [TicketController::class, 'show']);
     Route::post('/tickets', [TicketController::class, 'store']);
