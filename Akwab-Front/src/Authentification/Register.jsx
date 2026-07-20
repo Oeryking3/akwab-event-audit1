@@ -119,10 +119,11 @@ export default function Register() {
         {/* Nom + Prénoms */}
         <div className="flex gap-3">
           <div className="flex flex-col gap-1 flex-1">
-            <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+            <label htmlFor="nom" className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
               Nom
             </label>
             <input
+              id="nom"
               name="nom"
               type="text"
               placeholder="Doe"
@@ -132,10 +133,11 @@ export default function Register() {
             />
           </div>
           <div className="flex flex-col gap-1 flex-1">
-            <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+            <label htmlFor="prenoms" className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
               Prénoms
             </label>
             <input
+              id="prenoms"
               name="prenoms"
               type="text"
               placeholder="John"
@@ -147,10 +149,11 @@ export default function Register() {
         </div>
 
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+          <label htmlFor="email" className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
             Email
           </label>
           <input
+            id="email"
             name="email"
             type="email"
             placeholder="votre@email.com"
@@ -161,10 +164,11 @@ export default function Register() {
         </div>
 
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+          <label htmlFor="telephone" className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
             Téléphone
           </label>
           <input
+            id="telephone"
             name="telephone"
             type="tel"
             placeholder="+225 00 00 00 00 00"
@@ -175,10 +179,11 @@ export default function Register() {
         </div>
 
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+          <label htmlFor="mot_de_passe" className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
             Mot de passe
           </label>
           <input
+            id="mot_de_passe"
             name="mot_de_passe"
             type="password"
             placeholder="••••••••"
@@ -211,10 +216,11 @@ export default function Register() {
         </div>
 
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+          <label htmlFor="mot_de_passe_confirmation" className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
             Confirmer le mot de passe
           </label>
           <input
+            id="mot_de_passe_confirmation"
             name="mot_de_passe_confirmation"
             type="password"
             placeholder="••••••••"
