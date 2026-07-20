@@ -12,6 +12,7 @@ use App\Models\Ticket;
 use App\Models\Type_ticket;
 use App\Models\Evenement;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 
 class TicketController extends Controller
@@ -112,24 +113,29 @@ class TicketController extends Controller
         ]);
 
         $ticket->load(['evenement', 'typeTicket']);
-
         $user = $request->user();
-
-        Mail::to($user->email)
-            ->send(new TicketPaymentConfirmation($ticket));
-
 
         foreach ($request->tickets as $item) {
             $typeTicket = $evenement->types_tickets()
                 ->where('types_tickets.id_type_ticket', $item['id_type_ticket'])
                 ->first();
-
             $evenement->types_tickets()->updateExistingPivot(
                 $item['id_type_ticket'],
                 [
                     'quantite_ticket_restante' => $typeTicket->pivot->quantite_ticket_restante - $item['nombre_ticket_pris'],
                 ]
             );
+        }
+
+        try {
+            Mail::to($user->email)
+                ->send(new TicketPaymentConfirmation($ticket));
+        } catch (\Throwable $e) {
+            Log::error('Echec envoi email de confirmation de ticket', [
+                'ticket_id' => $ticket->id_ticket,
+                'user_id'   => $user->id_utilisateur,
+                'error'     => $e->getMessage(),
+            ]);
         }
 
         return response()->json([
