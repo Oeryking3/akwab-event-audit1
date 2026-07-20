@@ -17,9 +17,9 @@ use App\Http\Controllers\Api\AimerController;
 
 
 // ROUTES PUBLIQUES
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/register/organisateur', [AuthController::class, 'registerOrganisateur']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register'])->middleware('throttle:5,1');
+Route::post('/register/organisateur', [AuthController::class, 'registerOrganisateur'])->middleware('throttle:5,1');
+Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1');
 
 Route::get('/evenements/populaires', [AimerController::class, 'populaires']);
 
