@@ -114,6 +114,10 @@ function Footer() {
 
                 <div className="border-t border-white/20 mb-3 mt-8 pt-4 text-center text-sm text-gray-600">
                     © {new Date().getFullYear()} Akwab Event. Tous droits réservés.
+                    {" · "}
+                    <Link to="/mentions-legales" className="underline hover:text-white">
+                        Mentions légales et politique de confidentialité
+                    </Link>
                 </div>
 
             </div>

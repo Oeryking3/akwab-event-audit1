@@ -32,6 +32,7 @@ export default function Register() {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const strength = getPasswordStrength(form.mot_de_passe);
 
   function handleChange(e) {
@@ -40,6 +41,10 @@ export default function Register() {
 
   async function handleSubmit() {
     setError("");
+    if (!acceptedTerms) {
+      setError("Vous devez accepter la politique de confidentialité pour vous inscrire.");
+      return;
+    }
     if (form.mot_de_passe !== form.mot_de_passe_confirmation) {
       setError("Les mots de passe ne correspondent pas.");
       return;
@@ -218,7 +223,21 @@ export default function Register() {
             className="auth-input"
           />
         </div>
-
+        <div className="flex items-start gap-2 mt-1">
+          <input
+            type="checkbox"
+            id="acceptedTerms"
+            checked={acceptedTerms}
+            onChange={(e) => setAcceptedTerms(e.target.checked)}
+            className="mt-1"
+          />
+          <label htmlFor="acceptedTerms" className="text-xs text-gray-600">
+            J'accepte la{" "}
+            <Link to="/mentions-legales" className="underline text-[#F59A1E]" target="_blank">
+              politique de confidentialité
+            </Link>
+          </label>
+        </div>
         <button
           onClick={handleSubmit}
           disabled={loading}

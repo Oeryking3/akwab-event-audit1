@@ -47,6 +47,8 @@ import CreateCategorie from "./Admin/Categories/CreateCategorie";
 import ListCategories from "./Admin/Categories/ListCategorie";
 import UpdateCategorie from "./Admin/Categories/UpdateCategorie";
 
+import MentionsLegales from "./Legal/MentionsLegales";
+
 function App() {
   return (
     <BrowserRouter>
@@ -57,6 +59,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/header" element={<UtilisateurLayout />} />
 
         {/* Routes utilisateur */}
