@@ -48,6 +48,7 @@ import ListCategories from "./Admin/Categories/ListCategorie";
 import UpdateCategorie from "./Admin/Categories/UpdateCategorie";
 
 import MentionsLegales from "./Legal/MentionsLegales";
+import CookieBanner from "./Legal/CookieBanner";
 
 function App() {
   return (
@@ -115,6 +116,7 @@ function App() {
           </Route>
         </Route>
       </Routes>
+      <CookieBanner />
     </BrowserRouter>
   );
 }
