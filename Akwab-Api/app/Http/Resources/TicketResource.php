@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\EvenementResource;
 
 class TicketResource extends JsonResource
 {
@@ -28,7 +29,7 @@ class TicketResource extends JsonResource
 
             'utilisateur' => $this->whenLoaded('utilisateur'),
             'type_ticket' => $this->whenLoaded('typeTicket'),
-            'evenement'   => $this->whenLoaded('evenement'),
+            'evenement'   => EvenementResource::make($this->whenLoaded('evenement')),
             // 'id_evenement'       => $this->id_evenement,
             // 'id_type_ticket'     => $this->id_type_ticket,
 
