@@ -19,13 +19,21 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        $categories = Cache::remember('categories.tous', 3600, function () {
-            return Categorie::all();
+        $page = request()->input('page', 1);
+        $cacheKey = "categories.tous.page.{$page}";
+
+        $categories = Cache::remember($cacheKey, 3600, function () {
+            return Categorie::paginate(10);
         });
 
         return response()->json([
             'success' => true,
             'data'    => CategorieResource::collection($categories),
+            'meta'    => [
+                'current_page' => $categories->currentPage(),
+                'last_page'    => $categories->lastPage(),
+                'total'        => $categories->total(),
+            ],
         ]);
     }
 
