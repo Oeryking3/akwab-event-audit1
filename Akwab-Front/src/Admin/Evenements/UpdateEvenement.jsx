@@ -117,6 +117,7 @@ export default function UpdateEvenement() {
     if (!form.nom.trim()) errs.nom = "Requis";
     if (!form.description.trim()) errs.description = "Requis";
     if (!form.date) errs.date = "Requis";
+    else if (new Date(form.date) < new Date()) errs.date = "La date doit être dans le futur";
     if (!form.id_lieu) errs.id_lieu = "Requis";
     if (!form.id_categorie) errs.id_categorie = "Requis";
     if (!form.id_organisateur) errs.id_organisateur = "Requis";
@@ -300,6 +301,7 @@ export default function UpdateEvenement() {
               value={form.date}
               onChange={handleChange}
               error={fieldErrors.date}
+              min={new Date().toISOString().slice(0, 16)}
               required
             />
 
@@ -521,6 +523,7 @@ function Field({
   onChange,
   error,
   required,
+  min,
 }) {
   return (
     <div className="flex flex-col gap-1.5">
@@ -532,7 +535,8 @@ function Field({
         type={type}
         value={value}
         onChange={onChange}
-        className={`border rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-colors ${error ? "border-red-300 bg-red-50" : "border-gray-200 bg-white"}`}
+        min={min}
+        className={`border rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-colors${error ? "border-red-300 bg-red-50" : "border-gray-200 bg-white"}`}
       />
       {error && <p className="text-xs text-red-500">{error}</p>}
     </div>

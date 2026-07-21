@@ -77,6 +77,7 @@ export default function CreateEvenement() {
     if (!form.nom.trim()) errs.nom = "Requis";
     if (!form.description.trim()) errs.description = "Requis";
     if (!form.date) errs.date = "Requis";
+    else if (new Date(form.date) < new Date()) errs.date = "La date doit être dans le futur";
     if (!form.id_lieu) errs.id_lieu = "Requis";
     if (!form.id_categorie) errs.id_categorie = "Requis";
     if (!form.id_organisateur) errs.id_organisateur = "Requis";
@@ -224,11 +225,10 @@ export default function CreateEvenement() {
                 </label>
                 <div
                   onClick={() => fileRef.current.click()}
-                  className={`border-2 border-dashed rounded-xl h-36 flex flex-col items-center justify-center cursor-pointer transition-colors overflow-hidden ${
-                    fieldErrors.image
+                  className={`border-2 border-dashed rounded-xl h-36 flex flex-col items-center justify-center cursor-pointer transition-colors overflow-hidden ${fieldErrors.image
                       ? "border-red-300 bg-red-50"
                       : "border-gray-200 bg-gray-50"
-                  }`}
+                    }`}
                   style={
                     !fieldErrors.image ? { "--hover-border": "#253C96" } : {}
                   }
@@ -286,11 +286,10 @@ export default function CreateEvenement() {
                   value={form.description}
                   onChange={handleChange}
                   rows={3}
-                  className={`border rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 resize-none transition-colors ${
-                    fieldErrors.description
+                  className={`border rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 resize-none transition-colors ${fieldErrors.description
                       ? "border-red-300 bg-red-50"
                       : "border-gray-200"
-                  }`}
+                    }`}
                 />
                 {fieldErrors.description && (
                   <p className="text-xs text-red-500">
@@ -306,6 +305,7 @@ export default function CreateEvenement() {
                 value={form.date}
                 onChange={handleChange}
                 error={fieldErrors.date}
+                min={new Date().toISOString().slice(0, 16)}
                 required
               />
 
@@ -440,11 +440,10 @@ export default function CreateEvenement() {
                       onChange={(e) =>
                         updateTicket(i, "libelle", e.target.value)
                       }
-                      className={`border rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 transition-colors ${
-                        fieldErrors[`ticket_${i}_libelle`]
+                      className={`border rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 transition-colors ${fieldErrors[`ticket_${i}_libelle`]
                           ? "border-red-300 bg-red-50"
                           : "border-gray-200"
-                      }`}
+                        }`}
                     />
                     {fieldErrors[`ticket_${i}_libelle`] && (
                       <p className="text-xs text-red-500">
@@ -467,11 +466,10 @@ export default function CreateEvenement() {
                         onChange={(e) =>
                           updateTicket(i, "prix_ticket", e.target.value)
                         }
-                        className={`border rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 transition-colors ${
-                          fieldErrors[`ticket_${i}_prix`]
+                        className={`border rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 transition-colors ${fieldErrors[`ticket_${i}_prix`]
                             ? "border-red-300 bg-red-50"
                             : "border-gray-200"
-                        }`}
+                          }`}
                       />
                       {fieldErrors[`ticket_${i}_prix`] && (
                         <p className="text-xs text-red-500">
@@ -496,11 +494,10 @@ export default function CreateEvenement() {
                             e.target.value,
                           )
                         }
-                        className={`border rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 transition-colors ${
-                          fieldErrors[`ticket_${i}_qte`]
+                        className={`border rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 transition-colors ${fieldErrors[`ticket_${i}_qte`]
                             ? "border-red-300 bg-red-50"
                             : "border-gray-200"
-                        }`}
+                          }`}
                       />
                       {fieldErrors[`ticket_${i}_qte`] && (
                         <p className="text-xs text-red-500">
@@ -610,6 +607,7 @@ function Field({
   onChange,
   error,
   required,
+  min,
 }) {
   return (
     <div className="flex flex-col gap-1.5">
@@ -621,9 +619,9 @@ function Field({
         type={type}
         value={value}
         onChange={onChange}
-        className={`border rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-colors ${
-          error ? "border-red-300 bg-red-50" : "border-gray-200 bg-white"
-        }`}
+        min={min}
+        className={`border rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-colors${error ? "border-red-300 bg-red-50" : "border-gray-200 bg-white"
+          }`}
       />
       {error && <p className="text-xs text-red-500">{error}</p>}
     </div>
@@ -648,9 +646,8 @@ function SelectField({
         name={name}
         value={value}
         onChange={onChange}
-        className={`border rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-colors ${
-          error ? "border-red-300 bg-red-50" : "border-gray-200 bg-white"
-        }`}
+        className={`border rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-colors ${error ? "border-red-300 bg-red-50" : "border-gray-200 bg-white"
+          }`}
       >
         {children}
       </select>

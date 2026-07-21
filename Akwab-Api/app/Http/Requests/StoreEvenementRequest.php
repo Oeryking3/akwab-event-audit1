@@ -26,7 +26,7 @@ class StoreEvenementRequest extends FormRequest
     {
         return [
             'nom'                            => 'required|string|max:255',
-            'date'                           => 'required|date',
+            'date'                           => 'required|date|after_or_equal:today',
             'description'                    => 'required|string',
             'image'                          => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'id_categorie'                   => 'required|exists:categories,id_categorie',

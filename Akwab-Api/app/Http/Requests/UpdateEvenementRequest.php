@@ -41,7 +41,7 @@ class UpdateEvenementRequest extends FormRequest
     {
         return [
             'nom'                            => 'sometimes|string|max:255',
-            'date'                           => 'sometimes|date',
+            'date'                           => 'sometimes|date|after_or_equal:today',
             'description'                    => 'sometimes|string',
             'image'                          => 'sometimes|image|mimes:jpeg,png,jpg|max:2048',
             'id_categorie'                   => 'sometimes|exists:categories,id_categorie',
