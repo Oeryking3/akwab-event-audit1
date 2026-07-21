@@ -64,86 +64,80 @@ class TicketController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreTicketRequest $request)
-    {
-        $prixTotal   = 0;
-        $nombreTotal = 0;
+{
+    $prixTotal   = 0;
+    $nombreTotal = 0;
 
-        $evenement = Evenement::find($request->id_evenement);
+    $evenement = Evenement::with('types_tickets')->find($request->id_evenement);
 
-        if (!$evenement) {
+    if (!$evenement) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Événement non trouvé',
+        ], 404);
+    }
+
+    foreach ($request->tickets as $item) {
+        $typeTicket = $evenement->types_tickets->firstWhere('id_type_ticket', $item['id_type_ticket']);
+
+        if (!$typeTicket) {
             return response()->json([
                 'success' => false,
-                'message' => 'Événement non trouvé',
-            ], 404);
+                'message' => 'Ce type de ticket n\'est pas disponible pour cet événement',
+            ], 400);
         }
 
-        foreach ($request->tickets as $item) {
-            $typeTicket = $evenement->types_tickets()
-                ->where('types_tickets.id_type_ticket', $item['id_type_ticket'])
-                ->first();
-
-            if (!$typeTicket) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Ce type de ticket n\'est pas disponible pour cet événement',
-                ], 400);
-            }
-
-            if ($typeTicket->pivot->quantite_ticket_restante < $item['nombre_ticket_pris']) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Stock insuffisant pour le type : ' . $typeTicket->libelle,
-                ], 400);
-            }
-
-            $prixTotal   += $item['nombre_ticket_pris'] * $typeTicket->prix_ticket;
-            $nombreTotal += $item['nombre_ticket_pris'];
+        if ($typeTicket->pivot->quantite_ticket_restante < $item['nombre_ticket_pris']) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Stock insuffisant pour le type : ' . $typeTicket->libelle,
+            ], 400);
         }
 
-
-        $ticket = Ticket::create([
-            'id_utilisateur'     => $request->user()->id_utilisateur,
-            'id_evenement'       => $request->id_evenement,
-            'id_type_ticket'     => $request->tickets[0]['id_type_ticket'],
-            'numero_ticket'      => 'TK-N°' . strtoupper(uniqid()),
-            'date_reservation'   => now(),
-            'nombre_ticket_pris' => $nombreTotal,
-            'prix_total'         => $prixTotal,
-
-        ]);
-
-        $ticket->load(['evenement', 'typeTicket']);
-        $user = $request->user();
-
-        foreach ($request->tickets as $item) {
-            $typeTicket = $evenement->types_tickets()
-                ->where('types_tickets.id_type_ticket', $item['id_type_ticket'])
-                ->first();
-            $evenement->types_tickets()->updateExistingPivot(
-                $item['id_type_ticket'],
-                [
-                    'quantite_ticket_restante' => $typeTicket->pivot->quantite_ticket_restante - $item['nombre_ticket_pris'],
-                ]
-            );
-        }
-
-        try {
-            Mail::to($user->email)
-                ->send(new TicketPaymentConfirmation($ticket));
-        } catch (\Throwable $e) {
-            Log::error('Echec envoi email de confirmation de ticket', [
-                'ticket_id' => $ticket->id_ticket,
-                'user_id'   => $user->id_utilisateur,
-                'error'     => $e->getMessage(),
-            ]);
-        }
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Ticket acheté avec succès',
-            'data'    => new TicketResource($ticket),
-        ], 201);
+        $prixTotal   += $item['nombre_ticket_pris'] * $typeTicket->prix_ticket;
+        $nombreTotal += $item['nombre_ticket_pris'];
     }
+
+    $ticket = Ticket::create([
+        'id_utilisateur'     => $request->user()->id_utilisateur,
+        'id_evenement'       => $request->id_evenement,
+        'id_type_ticket'     => $request->tickets[0]['id_type_ticket'],
+        'numero_ticket'      => 'TK-N°' . strtoupper(uniqid()),
+        'date_reservation'   => now(),
+        'nombre_ticket_pris' => $nombreTotal,
+        'prix_total'         => $prixTotal,
+    ]);
+
+    $ticket->load(['evenement', 'typeTicket']);
+    $user = $request->user();
+
+    foreach ($request->tickets as $item) {
+        $typeTicket = $evenement->types_tickets->firstWhere('id_type_ticket', $item['id_type_ticket']);
+        $evenement->types_tickets()->updateExistingPivot(
+            $item['id_type_ticket'],
+            [
+                'quantite_ticket_restante' => $typeTicket->pivot->quantite_ticket_restante - $item['nombre_ticket_pris'],
+            ]
+        );
+    }
+
+    try {
+        Mail::to($user->email)
+            ->send(new TicketPaymentConfirmation($ticket));
+    } catch (\Throwable $e) {
+        Log::error('Echec envoi email de confirmation de ticket', [
+            'ticket_id' => $ticket->id_ticket,
+            'user_id'   => $user->id_utilisateur,
+            'error'     => $e->getMessage(),
+        ]);
+    }
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Ticket acheté avec succès',
+        'data'    => new TicketResource($ticket),
+    ], 201);
+}
     /**
      * Display the specified resource.
      */
