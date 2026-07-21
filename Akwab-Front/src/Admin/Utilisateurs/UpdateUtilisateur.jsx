@@ -30,6 +30,7 @@ export default function UpdateUtilisateur() {
       const res = await fetch(`${API_URL}/api/utilisateurs/${id}`, {
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
@@ -88,6 +89,7 @@ export default function UpdateUtilisateur() {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(payload),
