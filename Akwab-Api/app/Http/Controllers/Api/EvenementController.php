@@ -16,7 +16,7 @@ use Intervention\Image\ImageManager;
 use App\Models\Ticket;
 use App\Models\EvenementTypeTicket;
 use App\Models\Type_ticket;
-use Illuminate\Support\Facades\Log;
+
 
 class EvenementController extends Controller
 {
@@ -120,7 +120,6 @@ class EvenementController extends Controller
      */
     public function update(UpdateEvenementRequest $request, string $id)
     {
-        Log::info('DEBUG UPDATE', $request->all());
         $evenement = Evenement::findOrFail($id);
         $data = $request->validated();
         if ($request->hasFile('image')) {
