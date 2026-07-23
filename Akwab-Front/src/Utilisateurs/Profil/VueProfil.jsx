@@ -33,6 +33,31 @@ function VueProfil() {
         };
         fetchProfil();
     }, []);
+    const handleDeleteAccount = async () => {
+        const confirmed = window.confirm(
+            "Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible."
+        );
+        if (!confirmed) return;
+
+        try {
+            const res = await fetch(API_URL + "/api/profile", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            });
+            const data = await res.json();
+            if (data.success) {
+                localStorage.removeItem("token");
+                navigate("/");
+            } else {
+                setError("Impossible de supprimer le compte.");
+            }
+        } catch {
+            setError("Impossible de contacter le serveur.");
+        }
+    };
 
     if (loading) {
         return (
@@ -80,6 +105,12 @@ function VueProfil() {
                                 className="px-5 py-2 bg-[#F36B2E] text-white text-sm font-semibold rounded-lg hover:bg-[#3a0260] transition-colors"
                             >
                                 Modifier
+                            </button>
+                            <button
+                                onClick={handleDeleteAccount}
+                                className="px-5 py-2 bg-red-600 text-white text-sm font-semibold rounded-lg hover:bg-red-700 transition-colors ml-3"
+                            >
+                                Supprimer mon compte
                             </button>
                         </div>
                     </div>
