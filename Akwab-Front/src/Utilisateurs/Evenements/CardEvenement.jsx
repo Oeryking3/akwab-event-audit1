@@ -106,7 +106,7 @@ function CardEvenement({ evenement, onUnlike }) {
 
                 <button
                     onClick={handleLike}
-                    className="absolute top-2 right-2 bg-[#F36B2E] 
+                    className="absolute top-2 right-2 bg-[#B8491A] 
                     rounded-full p-1.5 shadow flex items-center gap-1"
                 >
                     {liked ? (
@@ -129,7 +129,7 @@ function CardEvenement({ evenement, onUnlike }) {
             <div className="p-4 flex flex-col flex-1 justify-between">
                 <div>
 
-                    <h3 id="titre-card" className="text-2xl text-[#F36B2E] line-clamp-1">
+                    <h3 id="titre-card" className="text-2xl text-[#B8491A] line-clamp-1">
                         {evenement.nom}
                     </h3>
 
@@ -165,7 +165,7 @@ function CardEvenement({ evenement, onUnlike }) {
                             <div id="donnees" className="flex justify-end items-center mt-5">
                                 <button data-cy="btn-reserver"
                                     onClick={handleRedirection}
-                                    className="px-4 py-2 rounded-sm text-[12px] font-semibold bg-[#F36B2E] text-white"
+                                    className="px-4 py-2 rounded-sm text-[12px] font-semibold bg-[#B8491A] text-white"
                                 >
                                     Réserver un ticket
                                 </button>

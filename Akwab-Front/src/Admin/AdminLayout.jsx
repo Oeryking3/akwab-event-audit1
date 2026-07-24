@@ -105,7 +105,7 @@ function AdminLayout() {
 
         <button
           onClick={handleLogout}
-          className="mt-auto mb-2 w-36 py-2.5 rounded-lg bg-[#F36B2E] hover:bg-[#d85a22] text-white text-sm font-semibold transition-colors"
+          className="mt-auto mb-2 w-36 py-2.5 rounded-lg bg-[#B8491A] hover:bg-[#d85a22] text-white text-sm font-semibold transition-colors"
         >
           Déconnexion
         </button>

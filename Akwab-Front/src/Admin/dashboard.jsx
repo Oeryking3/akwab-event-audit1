@@ -1,4 +1,4 @@
-﻿import { API_URL } from "../config/api";
+import { API_URL } from "../config/api";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -89,7 +89,7 @@ export default function Dashboard() {
           viewBox="0 0 24 24"
           fill="none"
           className="w-8 h-8"
-          stroke="#F36B2E"
+          stroke="#B8491A"
           strokeWidth={1.5}
         >
           <path
@@ -108,7 +108,7 @@ export default function Dashboard() {
           viewBox="0 0 24 24"
           fill="none"
           className="w-8 h-8"
-          stroke="#F36B2E"
+          stroke="#B8491A"
           strokeWidth={1.5}
         >
           <path
@@ -127,7 +127,7 @@ export default function Dashboard() {
           viewBox="0 0 24 24"
           fill="none"
           className="w-8 h-8"
-          stroke="#F36B2E"
+          stroke="#B8491A"
           strokeWidth={1.5}
         >
           <path
@@ -146,7 +146,7 @@ export default function Dashboard() {
           viewBox="0 0 24 24"
           fill="none"
           className="w-8 h-8"
-          stroke="#F36B2E"
+          stroke="#B8491A"
           strokeWidth={1.5}
         >
           <path
@@ -170,7 +170,7 @@ export default function Dashboard() {
           viewBox="0 0 24 24"
           fill="none"
           className="w-8 h-8"
-          stroke="#F36B2E"
+          stroke="#B8491A"
           strokeWidth={1.5}
         >
           <path
@@ -189,7 +189,7 @@ export default function Dashboard() {
           viewBox="0 0 24 24"
           fill="none"
           className="w-8 h-8"
-          stroke="#F36B2E"
+          stroke="#B8491A"
           strokeWidth={1.5}
         >
           <path
@@ -210,14 +210,14 @@ export default function Dashboard() {
           <p className="text-gray-500 text-sm">Bienvenue,</p>
           <h1
             className="text-3xl font-bold tracking-wide"
-            style={{ color: "#F36B2E" }}
+            style={{ color: "#B8491A" }}
           >
             {user.nom || user.prenoms || user.name || "Admin"}
           </h1>
         </div>
         <div
           className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
-          style={{ backgroundColor: "#F36B2E" }}
+          style={{ backgroundColor: "#B8491A" }}
         >
           {(user.nom || user.prenoms || "A")[0].toUpperCase()}
         </div>
@@ -233,7 +233,7 @@ export default function Dashboard() {
             {carte.icon}
             <div>
               <p className="text-gray-400 text-xs">{carte.label}</p>
-              <p className="text-2xl font-bold" style={{ color: "#F36B2E" }}>
+              <p className="text-2xl font-bold" style={{ color: "#B8491A" }}>
                 {loading ? "..." : carte.value}
               </p>
             </div>
@@ -291,7 +291,7 @@ export default function Dashboard() {
                         >
                           <td
                             className="py-3 font-bold"
-                            style={{ color: "#F36B2E" }}
+                            style={{ color: "#B8491A" }}
                           >
                             {i + 1}
                           </td>
@@ -318,7 +318,7 @@ export default function Dashboard() {
                                 navigate(`/admin/evenements/${ev.id_evenement}`)
                               }
                               className="text-xs font-semibold hover:underline"
-                              style={{ color: "#F36B2E" }}
+                              style={{ color: "#B8491A" }}
                             >
                               Voir
                             </button>
@@ -351,7 +351,7 @@ export default function Dashboard() {
                       <div className="flex items-center justify-between">
                         <span
                           className="font-bold text-sm"
-                          style={{ color: "#F36B2E" }}
+                          style={{ color: "#B8491A" }}
                         >
                           {i + 1}. {ev.nom}
                         </span>
@@ -360,7 +360,7 @@ export default function Dashboard() {
                             navigate(`/admin/evenements/${ev.id_evenement}`)
                           }
                           className="text-xs font-semibold"
-                          style={{ color: "#F36B2E" }}
+                          style={{ color: "#B8491A" }}
                         >
                           Voir
                         </button>

@@ -1,4 +1,4 @@
-﻿import { API_URL } from "../../config/api";
+import { API_URL } from "../../config/api";
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import HeaderLayout from "../HeaderLayout"
@@ -102,7 +102,7 @@ function VueProfil() {
                         <div className="px-6 py-4 border-t border-gray-100 flex justify-end bg-gray-50">
                             <button
                                 onClick={() => navigate("/profil/modifier")}
-                                className="px-5 py-2 bg-[#F36B2E] text-white text-sm font-semibold rounded-lg hover:bg-[#3a0260] transition-colors"
+                                className="px-5 py-2 bg-[#B8491A] text-white text-sm font-semibold rounded-lg hover:bg-[#3a0260] transition-colors"
                             >
                                 Modifier
                             </button>

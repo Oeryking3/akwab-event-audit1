@@ -1,4 +1,4 @@
-﻿import { API_URL } from "../../config/api";
+import { API_URL } from "../../config/api";
 import arrow from "../../assets/icones/Arrowleft.svg"
 import { useNavigate, useParams } from "react-router-dom"
 import HeaderLayout from "../HeaderLayout"
@@ -196,7 +196,7 @@ function DetailEvenement() {
 
 
                 <div className="flex items-start justify-between mt-5 mb-1">
-                    <h1 className="text-xl font-bold text-[#F36B2E] uppercase flex-1 pr-4">
+                    <h1 className="text-xl font-bold text-[#B8491A] uppercase flex-1 pr-4">
                         {evenement.nom}
                     </h1>
                     <button onClick={handleLike} className="shrink-0 mt-6">
@@ -230,7 +230,7 @@ function DetailEvenement() {
                                 @{evenement.organisateurs?.nom}
                             </span>
                         </p>
-                        <button className="ml-1 px-3 py-0.5 bg-[#F36B2E] text-gray-100 text-xs font-semibold rounded-full">
+                        <button className="ml-1 px-3 py-0.5 bg-[#B8491A] text-gray-100 text-xs font-semibold rounded-full">
                             S'abonner
                         </button>
                     </div>

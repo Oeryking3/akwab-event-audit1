@@ -1,4 +1,4 @@
-﻿import { API_URL } from "../../config/api";
+import { API_URL } from "../../config/api";
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import HeaderLayout from "../HeaderLayout"
@@ -184,7 +184,7 @@ function UpdateProfil() {
                             <button
                                 type="submit"
                                 disabled={saving}
-                                className="px-5 py-2 bg-[#F36B2E] text-white text-sm font-semibold rounded-lg hover:bg-[#3a0260] transition-colors disabled:opacity-50"
+                                className="px-5 py-2 bg-[#B8491A] text-white text-sm font-semibold rounded-lg hover:bg-[#3a0260] transition-colors disabled:opacity-50"
                             >
                                 {saving ? "Enregistrement..." : "Enregistrer"}
                             </button>

@@ -1,4 +1,4 @@
-﻿import { API_URL } from "../../config/api";
+import { API_URL } from "../../config/api";
 
 
 import { useEffect, useState } from "react"
@@ -227,7 +227,7 @@ function HistoriqueTicket() {
                                         <img src={ticket.evenement?.image} alt="image-event" className="w-full sm:w-28 h-32 sm:h-20 object-cover rounded" />
                                     </div>
                                     <div className="w-full sm:w-3/4">
-                                        <h3 className="mb-2 font-bold uppercase text-[#F36B2E] text-sm sm:text-base">
+                                        <h3 className="mb-2 font-bold uppercase text-[#B8491A] text-sm sm:text-base">
                                             {ticket.evenement?.nom}
                                         </h3>
                                         <div className="flex items-center gap-2 text-gray-600">
@@ -282,11 +282,11 @@ function HistoriqueTicket() {
 
 
                                 <div className="flex flex-col sm:flex-row justify-between gap-2 mt-5">
-                                    <button onClick={() => navigate(`/ticket/${ticket.id}`)} className="px-4 py-2 rounded-sm text-[12px] font-semibold bg-[#F36B2E] text-white hover:bg-[#D6ABEB] transition-all w-full sm:w-auto">
+                                    <button onClick={() => navigate(`/ticket/${ticket.id}`)} className="px-4 py-2 rounded-sm text-[12px] font-semibold bg-[#B8491A] text-white hover:bg-[#D6ABEB] transition-all w-full sm:w-auto">
                                         Voir mon ticket
                                     </button>
 
-                                    <button onClick={() => handleDownload(ticket)} className="px-4 py-2 rounded-sm text-[12px] font-semibold bg-[#F36B2E] text-white hover:bg-[#D6ABEB] transition-all w-full sm:w-auto">
+                                    <button onClick={() => handleDownload(ticket)} className="px-4 py-2 rounded-sm text-[12px] font-semibold bg-[#B8491A] text-white hover:bg-[#D6ABEB] transition-all w-full sm:w-auto">
                                         Télécharger mon ticket
                                     </button>
                                 </div>

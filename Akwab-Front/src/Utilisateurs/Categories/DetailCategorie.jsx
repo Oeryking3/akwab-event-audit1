@@ -1,4 +1,4 @@
-﻿import { API_URL } from "../../config/api";
+import { API_URL } from "../../config/api";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import HeaderLayout from "../HeaderLayout";
@@ -106,7 +106,7 @@ function DetailCategorie() {
                                         <img src={ev.image} alt="image-event" className="w-full sm:w-28 h-32 sm:h-20 object-cover rounded" />
                                     </div>
                                     <div className="w-full sm:w-3/4">
-                                        <h3 className="mb-2 font-bold uppercase text-[#F36B2E] text-sm sm:text-base">
+                                        <h3 className="mb-2 font-bold uppercase text-[#B8491A] text-sm sm:text-base">
                                             {ev.nom}
                                         </h3>
                                         <div className="flex items-center gap-2 text-gray-600">
@@ -145,7 +145,7 @@ function DetailCategorie() {
                                 <div className="flex justify-end mt-5">
                                     <button
                                         onClick={() => navigate(`/evenements/${ev.id_evenement}`)}
-                                        className="px-4 py-2 rounded-sm text-[12px] font-semibold bg-[#F36B2E] text-white hover:bg-[#D6ABEB] transition-all">
+                                        className="px-4 py-2 rounded-sm text-[12px] font-semibold bg-[#B8491A] text-white hover:bg-[#D6ABEB] transition-all">
                                         Voir l'événement
                                     </button>
                                 </div>

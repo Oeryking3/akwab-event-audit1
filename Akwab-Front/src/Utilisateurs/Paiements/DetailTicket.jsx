@@ -1,4 +1,4 @@
-﻿import { API_URL } from "../../config/api";
+import { API_URL } from "../../config/api";
 
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
@@ -168,7 +168,7 @@ function DetailTicket() {
 
                     <div className="p-5">
 
-                        <h2 className="text-xl font-bold text-[#F36B2E] mb-2">
+                        <h2 className="text-xl font-bold text-[#B8491A] mb-2">
                             {ticket.evenement?.nom}
                         </h2>
 
